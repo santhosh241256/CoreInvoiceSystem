@@ -16,17 +16,21 @@ CoreInvoiceSystem is an ASP.NET Core Web API project for managing invoices. It s
   - Testing
   - Technologies Used
 
-1. Getting Started
-   a. Prerequisites
+# Getting Started
+   - Prerequisites
       .NET SDK 6.0
        Docker (optional, for containerization)
   
-   b. Installation
-       Clone the repository:
-          git clone https://github.com/yourusername/CoreInvoiceSystem.git
-          cd CoreInvoiceSystem
-       Restore the project dependencies:
+   - Installation       
+       - Clone the repository:
+           ```sh
+           git clone https://github.com/yourusername/CoreInvoiceSystem.git
+           cd CoreInvoiceSystem
+           ```
+       - Restore the project dependencies:
+         ```sh
           dotnet restore
+         ```
    c. Running the Application
        You can run the application using the following command:
           dotnet run
