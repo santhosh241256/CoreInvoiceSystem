@@ -1,6 +1,3 @@
-Sure! Here's the updated README file with instructions for building and using Docker, including the `Dockerfile` and `docker-compose.yml` details.
-
----
 
 # CoreInvoiceSystem
 
