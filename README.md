@@ -1,19 +1,20 @@
-#CoreInvoiceSystem:
+# CoreInvoiceSystem:
+
 CoreInvoiceSystem is an ASP.NET Core Web API project for managing invoices. It supports creating, retrieving, paying, and processing overdue invoices. This project demonstrates the use of in-memory data storage, dependency injection, custom exception handling, and the integration of Swagger for API documentation.
 
-Table of Contents
-  Getting Started
-    Prerequisites
-    Installation
-    Running the Application
-  API Endpoints
-    Create Invoice
-    Get All Invoices
-    Pay Invoice
-    Process Overdue Invoices
-Project Structure
-Testing
-Technologies Used
+# Table of Contents
+  - Getting Started
+    - Prerequisites
+    - Installation
+    - Running the Application
+  - API Endpoints
+    - Create Invoice
+    - Get All Invoices
+    - Pay Invoice
+    - Process Overdue Invoices
+  - Project Structure
+  - Testing
+  - Technologies Used
 
 1. Getting Started
    a. Prerequisites
