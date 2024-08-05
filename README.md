@@ -1,3 +1,7 @@
+Sure! Here's the updated README file with instructions for building and using Docker, including the `Dockerfile` and `docker-compose.yml` details.
+
+---
+
 # CoreInvoiceSystem
 
 CoreInvoiceSystem is an ASP.NET Core Web API project for managing invoices. It supports creating, retrieving, paying, and processing overdue invoices. This project demonstrates the use of in-memory data storage, dependency injection, custom exception handling, and the integration of Swagger for API documentation.
@@ -8,6 +12,7 @@ CoreInvoiceSystem is an ASP.NET Core Web API project for managing invoices. It s
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Running the Application](#running-the-application)
+  - [Docker](#docker)
 - [API Endpoints](#api-endpoints)
   - [Create Invoice](#create-invoice)
   - [Get All Invoices](#get-all-invoices)
@@ -24,7 +29,7 @@ CoreInvoiceSystem is an ASP.NET Core Web API project for managing invoices. It s
 ### Prerequisites
 
 - [.NET SDK 6.0](https://dotnet.microsoft.com/download/dotnet/6.0)
-- [Docker](https://www.docker.com/products/docker-desktop) (optional, for containerization)
+- [Docker](https://www.docker.com/products/docker-desktop)
 
 ### Installation
 
@@ -52,6 +57,73 @@ dotnet run
 By default, the API will be accessible at `http://localhost:5000`.
 
 To view the Swagger UI for the API documentation, navigate to `http://localhost:5000/swagger`.
+
+### Docker
+
+You can use Docker to containerize the application. Below are the instructions to build and run the Docker container.
+
+#### Dockerfile
+
+Here is the `Dockerfile` used for this project:
+
+```dockerfile
+# Use the official .NET 6 SDK image
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+WORKDIR /app
+
+# Copy csproj and restore as distinct layers
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copy everything else and build
+COPY . ./
+RUN dotnet publish -c Release -o out
+
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+COPY --from=build-env /app/out .
+
+# Verify that dotnet executable is available
+RUN ["dotnet", "--info"]
+
+# List files in the working directory
+RUN ["ls", "-la"]
+
+ENTRYPOINT ["dotnet", "CoreInvoiceSystem.dll"]
+```
+
+#### docker-compose.yml
+
+Here is the `docker-compose.yml` file used for this project:
+
+```yaml
+version: '3.8'
+
+services:
+  coreinvoicesystem:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+```
+
+#### Building and Running the Docker Container
+
+1. Build the Docker image:
+
+```bash
+docker-compose build
+```
+
+2. Run the Docker container:
+
+```bash
+docker-compose up
+```
+
+The API will be accessible at `http://localhost:8080`.
 
 ## API Endpoints
 
@@ -177,4 +249,7 @@ dotnet test
 - Dependency Injection
 - Custom Exception Handling
 - Swagger for API Documentation
+- Docker for Containerization
 - NUnit for Unit Testing
+
+  
